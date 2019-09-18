@@ -63,6 +63,7 @@ function useBitStampSubscription(currencyPair) {
 
     function initWebSocket() {
       ws.onopen = () => {
+        // suscribe to channel
         ws.send(JSON.stringify(suscribeMsg));
       };
 
@@ -74,6 +75,7 @@ function useBitStampSubscription(currencyPair) {
             break;
           }
           case 'bts:request_reconnect': {
+            // resuscribe if connection fails
             initWebSocket();
             break;
           }
@@ -89,6 +91,7 @@ function useBitStampSubscription(currencyPair) {
     initWebSocket();
 
     return () => {
+      // unsuscribe from channel
       ws.send(JSON.stringify(unsuscribeMsg));
     };
   }, [currencyPair]);
