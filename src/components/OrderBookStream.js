@@ -2,17 +2,21 @@ import React, { useContext } from 'react';
 import { DataContext } from '../utils/contexts';
 
 function renderBids(bids = [], initialCurrency, convertedCurrency) {
-  return bids.map((bid, index) => {
-    const [from, to] = bid;
-    return <p key={index}>{`${from} ${initialCurrency} @ ${to} ${convertedCurrency}`}</p>;
-  });
+  return bids.map((bid, index) => (
+    <p key={index}>
+      {bid[0]} <span className="currency">{initialCurrency}</span> @ {bid[1]}
+      <span className="currency"> {convertedCurrency}</span>
+    </p>
+  ));
 }
 
 function renderAsks(asks = [], initialCurrency, convertedCurrency) {
-  return asks.map((ask, index) => {
-    const [from, to] = ask;
-    return <p key={index}>{`${from} ${initialCurrency} @ ${to} ${convertedCurrency}`}</p>;
-  });
+  return asks.map((ask, index) => (
+    <p key={index}>
+      {ask[0]} <span className="currency">{initialCurrency}</span> @ {ask[1]}
+      <span className="currency"> {convertedCurrency}</span>
+    </p>
+  ));
 }
 
 function OrderBookStream() {

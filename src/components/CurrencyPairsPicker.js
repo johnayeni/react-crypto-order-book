@@ -14,7 +14,12 @@ function CurrencyPairsPicker() {
     DataContext,
   );
   return (
-    <select name="order-books" value={selectedCurrencyPair} onChange={onSelectedCurrencyPairChange}>
+    <select
+      className="select-input"
+      name="order-books"
+      value={selectedCurrencyPair}
+      onChange={onSelectedCurrencyPairChange}
+    >
       <option value="">Select currency pair</option>
       {renderCurrencyPairOptions(currencyPairs || [])}
     </select>
