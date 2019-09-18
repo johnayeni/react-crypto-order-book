@@ -16,9 +16,10 @@ function CurrencyPairsPicker() {
   return (
     <select
       className="select-input"
-      name="order-books"
+      name="currency-pairs"
       value={selectedCurrencyPair}
       onChange={onSelectedCurrencyPairChange}
+      aria-label="Currecncy Pairs"
     >
       <option value="">Select currency pair</option>
       {renderCurrencyPairOptions(currencyPairs || [])}
