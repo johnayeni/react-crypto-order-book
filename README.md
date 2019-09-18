@@ -1,8 +1,12 @@
 # CRYPTO ORDER BOOK
 
+## LIVE DEMO
+
+View the a live demo of the app [here](https://crypto-order-book.netlify.com)
+
 ## Requirements
 
-- Node.js (v8.11 or higher recommended)
+- Node.js (v10.16.3 or higher recommended)
 
 ## Local setup
 
