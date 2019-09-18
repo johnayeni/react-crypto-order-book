@@ -108,7 +108,7 @@ function useBitStampSubscription(currencyPair) {
     };
   }, [currencyPair]);
 
-  return [orders, errorOccured];
+  return { orders, errorOccured };
 }
 
 export { useInput, useFetch, useBitStampSubscription };

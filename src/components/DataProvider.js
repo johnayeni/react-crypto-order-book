@@ -6,7 +6,7 @@ const TRADING_PAIRS_API_URL = 'https://www.bitstamp.net/api/v2/trading-pairs-inf
 function DataProvider({ render }) {
   const { data: currencyPairs, loading, error } = useFetch(TRADING_PAIRS_API_URL);
   const [selectedCurrencyPair, onSelectedCurrencyPairChange] = useInput('');
-  const [orders, errorOccured] = useBitStampSubscription(
+  const { orders, errorOccured } = useBitStampSubscription(
     formatCurrencyPairName(selectedCurrencyPair),
   );
 
