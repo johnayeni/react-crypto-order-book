@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { fetchData } from './helpers';
 
+/**
+ *
+ * @param {any} initialValue
+ */
 function useInput(initialValue) {
   const [value, setvalue] = useState(initialValue);
 
@@ -11,6 +15,10 @@ function useInput(initialValue) {
   return [value, onValueChange];
 }
 
+/**
+ *
+ * @param {string} url
+ */
 function useFetch(url) {
   const [data, setdata] = useState(null);
   const [loading, setloading] = useState(false);
@@ -33,6 +41,10 @@ function useFetch(url) {
   return { data, loading, error };
 }
 
+/**
+ *
+ * @param {string} currencyPair
+ */
 function useBitStampSubscription(currencyPair) {
   const [orders, setOrders] = useState({ bids: [], asks: [] });
   const [errorOccured, setErrorOccured] = useState(false);
@@ -47,14 +59,14 @@ function useBitStampSubscription(currencyPair) {
   useEffect(() => {
     const ws = new WebSocket(BITSTAMP_WEBSOCKET_URL);
 
-    const suscribeMsg = {
+    const subscribeMsg = {
       event: 'bts:subscribe',
       data: {
         channel: `detail_order_book_${currencyPair}`,
       },
     };
 
-    const unsuscribeMsg = {
+    const unsubscribeMsg = {
       event: 'bts:unsubscribe',
       data: {
         channel: `detail_order_book_${currencyPair}`,
@@ -63,8 +75,8 @@ function useBitStampSubscription(currencyPair) {
 
     function initWebSocket() {
       ws.onopen = () => {
-        // suscribe to channel
-        ws.send(JSON.stringify(suscribeMsg));
+        // subscribe to channel
+        ws.send(JSON.stringify(subscribeMsg));
       };
 
       ws.onmessage = (event) => {
@@ -75,7 +87,7 @@ function useBitStampSubscription(currencyPair) {
             break;
           }
           case 'bts:request_reconnect': {
-            // resuscribe if connection fails
+            // resubscribe if connection fails
             initWebSocket();
             break;
           }
@@ -91,8 +103,8 @@ function useBitStampSubscription(currencyPair) {
     initWebSocket();
 
     return () => {
-      // unsuscribe from channel
-      ws.send(JSON.stringify(unsuscribeMsg));
+      // unsubscribe from channel
+      ws.send(JSON.stringify(unsubscribeMsg));
     };
   }, [currencyPair]);
 
