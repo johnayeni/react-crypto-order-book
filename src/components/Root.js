@@ -13,7 +13,9 @@ function Root() {
       ) : (
         <React.Fragment>
           {error || errorOccured ? (
-            <p>Error occured loading data or streaming data, try reloading the page</p>
+            <p className="error">
+              Error occured loading data or streaming data, try reloading the page
+            </p>
           ) : (
             <React.Fragment>
               <CurrencyPairsPicker />

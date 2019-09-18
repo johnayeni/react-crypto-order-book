@@ -69,3 +69,7 @@ h3 {
     font-size: 0.8rem;
   }
 }
+
+.error {
+  color: #b22222;
+}
