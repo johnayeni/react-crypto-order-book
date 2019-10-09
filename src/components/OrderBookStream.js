@@ -1,19 +1,10 @@
 import React, { useContext } from 'react';
 import { DataContext } from '../utils/contexts';
 
-function renderBids(bids = [], initialCurrency, convertedCurrency) {
-  return bids.map((bid, index) => (
+function renderList(list = [], initialCurrency, convertedCurrency) {
+  return list.map((item, index) => (
     <p key={index}>
-      {bid[0]} <span className="currency">{initialCurrency}</span> @ {bid[1]}
-      <span className="currency"> {convertedCurrency}</span>
-    </p>
-  ));
-}
-
-function renderAsks(asks = [], initialCurrency, convertedCurrency) {
-  return asks.map((ask, index) => (
-    <p key={index}>
-      {ask[0]} <span className="currency">{initialCurrency}</span> @ {ask[1]}
+      {item[0]} <span className="currency">{initialCurrency}</span> @ {item[1]}
       <span className="currency"> {convertedCurrency}</span>
     </p>
   ));
@@ -29,11 +20,11 @@ function OrderBookStream() {
     <div className="order-stream-container">
       <div className="bids">
         {bids.length > 0 && <h3>Bids</h3>}
-        {renderBids(bids, initialCurrency, convertedCurrency)}
+        {renderList(bids, initialCurrency, convertedCurrency)}
       </div>
       <div className="asks">
         {asks.length > 0 && <h3>Asks</h3>}
-        {renderAsks(asks, initialCurrency, convertedCurrency)}
+        {renderList(asks, initialCurrency, convertedCurrency)}
       </div>
     </div>
   );
